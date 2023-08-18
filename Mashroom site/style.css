@@ -1,0 +1,126 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+body
+{
+    background: url(bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+
+}
+header
+{
+    display: flex;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0px;
+    align-items: center;
+    justify-content: space-between;
+}
+header .logo
+{
+    width: 130px;
+    height: 100px;
+}
+header .navbar ul li 
+{
+   list-style: none;
+    position: relative;
+    float: left;
+}
+header .navbar ul li a
+{
+    text-decoration: none;
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    display: block;
+}
+header .navbar ul li a:hover
+{
+    background-color: black;
+    color: white;
+}
+header .navbar ul li ul
+{
+    position: absolute;
+    left: 0px;
+    width: 200px;
+}
+header .navbar ul li ul
+{
+    display: none;
+    width: 100%;
+    /* border-top: 1px solid blue; */
+}  
+
+header .navbar ul li ul li ul
+{
+    left: 100px;
+    top: 0px;
+   
+}
+header .navbar ul li:hover > ul 
+{
+    display: initial;
+}
+#menu-bar
+{
+    display: none;
+}
+header label
+{
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    display: none;
+}
+
+@media(max-width:991px)
+{
+    header
+    {
+        padding: 20px;
+    }
+    header label
+    {
+        display: initial;
+    }
+    header .navbar
+    {
+        position: absolute;
+        top: 100%;
+        left:0px;
+        right: 0px;
+        border :2px solid black;
+        display: none;
+
+    }
+    header .navbar ul li 
+    {
+        width: 100%;
+    }
+    header .navbar ul li ul 
+    {
+        position: relative;
+        width: 100%;
+    }
+    header .navbar ul li ul li 
+    {
+        background-color: white;
+    }
+    header .navbar ul li ul li ul 
+    {
+        width: 100%;
+    }
+    #menu-bar:checked ~ .navbar
+    {
+        display: initial;
+    }
+}
