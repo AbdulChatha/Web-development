@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js form validation</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+            border-radius: 7px;
+            height: 25px;
+
+
+        }
+
+        span {
+            color: red;
+        }
+
+        .fdesign {
+            display: flex;
+            flex-direction: column;
+            /* align-items: cent; */
+            padding: 10px;
+            width: 50%;
+            margin: auto;
+            background-color: teal;
+        }
+
+        span {
+            /* background-color:green; */
+            height: 30px;
+            margin-left: 20px;
+        }
+
+        #s {
+            border-radius: 7px;
+            height: 40px;
+            width: 50%;
+        }
+
+        form div input {
+            display: inline;
+        }
+
+        #dropdown {
+            width: 50%;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 7px;
+            height: 30px;
+        }
+
+        #btn {
+            margin-top: 0px;
+            width: 30%;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        #newcity {
+            margin-bottom: 0px;
+        }
+
+        #err {
+            color: red;
+        }
+    </style>
+    <script>
+        function formvalidate() {
+            returnval = true;
+            var name = document.forms['myForm']["fname"].value;
+            var password = document.forms['myForm']['fpass'].value;
+            var rollno = document.forms['myForm']['rollno'].value;
+            var email = document.getElementById('mail').value;
+            var age = document.getElementById('age').value;
+            if (email.length == 0) {
+                document.getElementById('fmail').innerHTML = 'Email connot be empty';
+                returnval = false;
+            }
+            else if( email.length <12 || email.slice(-10,)!=="@gmail.com")
+            {
+                document.getElementById('fmail').innerHTML = 'Invalid Email'; 
+                returnval=false;
+            }
+            if (age.length == 0) {
+                document.getElementById('fage').innerHTML = 'Age connot be empty';
+                returnval = false;
+            }
+            else if (age < 18) {
+                document.getElementById('fage').innerHTML = 'Please Enter Age greater than or equal to 18';
+                returnval = false;
+            }
+            if (name.length == 0) {
+                document.getElementById('name').innerHTML = 'Name cannot be empty';
+                returnval = false;
+            }
+            else if (name.length < 8 || name.length > 12) {
+                document.getElementById('name').innerHTML = 'Name should have no of  characters in between 8 and 12';
+                returnval = false;
+            }
+            if (password.length == 0) {
+                document.getElementById('pass').innerHTML = 'password cannot be empty';
+                returnval = false;
+            }
+            else {
+                var count = 0;
+                for (let i = 0; i < password.length; i++) {
+                    if (password.charCodeAt(i) >= 65 && password.charCodeAt(i) <= 90) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    document.getElementById('pass').innerHTML = 'password should contain on capital letter';
+                    returnval = false;
+                }
+            }
+            if (rollno.length == 0) {
+                document.getElementById('rlno').innerHTML = 'roll no cannot be empty';
+                returnval = false;
+            }
+            else {
+                if (Number(rollno.slice(-2,)) > 0 && Number(rollno.slice(-2,)) < 51) {
+
+                }
+                else {
+                    document.getElementById('rlno').innerHTML = 'Invalid Roll Number';
+                    returnval = false;
+                }
+                if (rollno.slice(0, -2) === 'BSSE51F20S0' || rollno.slice(0, -2) === 'BSCS51F20S0' || rollno.slice(0, -2) === 'BSIT51F20S0') {
+
+                }
+                else {
+                    document.getElementById('rlno').innerHTML = 'Invalid Roll Number';
+                    returnval = false;
+                }
+            }
+            var s1 = document.forms.myForm['s1'];
+            var s2 = document.forms.myForm['s2'];
+            var s3 = document.forms.myForm['s3'];
+            var s4 = document.forms.myForm['s4'];
+            if (s1.checked == false && s2.checked == false && s3.checked == false && s4.checked == false) {
+                document.getElementById('skl').innerHTML = 'atleast one skill must be selected';
+                returnval = false;
+            }
+            if (document.forms["myForm"]["country"].selectedIndex < 1) {
+                document.getElementById("city").innerHTML = "select city";
+                returnval = false;
+            }
+            return returnval;
+        }
+        function clearerror() {
+            errors = document.getElementsByClassName('err');
+            for (let item of errors) {
+                item.innerHTML = "";
+            }
+        }
+        function clearerrorskil()
+        {
+            document.getElementById('skl').innerHTML=" ";
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <form class="fdesign" action="ac.php" name="myForm" onsubmit='return formvalidate()'>
+            Name: <input type="text" name="fname" onfocus="clearerror()"><span id="name" class="err"></span> <br>
+            Roll No:<input type="text" name="rollno" id="" onfocus="clearerror()"><span id="rlno" class="err"></span>
+            Email: <input type="email" name="" id="mail" onfocus="clearerror()"><span  id="fmail" class="err"></span>
+            Password: <input type="password" name="fpass" id="" onfocus="clearerror()"><span id="pass" class="err"></span> <br>
+            Age: <input type="number" name="" id="age" onfocus="clearerror()" placeholder="Only person over 17 is elligible"> <span
+                id="fage" class="err"></span>
+            Skills:
+            <div>
+                <input type="checkbox" name="s1" id="" onclick="clearerrorskil()">C++ <br>
+                <input type="checkbox" name="s2" id="" onclick="clearerrorskil()"> Python <br>
+                <input type="checkbox" name="s3" id="" onclick="clearerrorskil()"> Java <br>
+                <input type="checkbox" name="s4" id="" onclick="clearerrorskil()"> JavaScript <br>
+            </div>
+            <span id="skl"></span>
+            City:<select name="country" id="dropdown" onmouseover="">
+                <option value="">Select City</option>
+                <option value="Rajan pur" >Rajan pur</option>
+                <option value="Haider Abad">Haider Abad</option>
+                <option value="Gujrat">Gujrat</option>
+                <option value="Gujranwala">Gujranwala</option>
+            </select> <br><br>
+            <span id="city" class="err"></span>
+            
+            <p id="err" class="err"></p>
+            <input type="submit" value="submit" id="s">
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>
