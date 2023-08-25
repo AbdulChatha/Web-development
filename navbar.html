@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        ul li a {
+            text-decoration: None;
+            color: rgb(234, 223, 236);
+        }
+
+        .box {
+            background-color: rgb(121, 121, 209);
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            float:left;
+            margin-right: 10px;
+        }
+
+        ul li:hover {
+            background-color: black;
+            color: blueviolet;
+            
+        }
+        ul li:hover .cl{
+            display: block;
+        }
+        .cl {
+            display: none;
+            margin-left: -42px;
+            list-style: none;
+            background-color: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="box"><a href="#home">Home </a></li>
+        <li class="box">
+            <a href="#news">News
+                <ul>
+                    <li class="cl">Sports</li>
+                    <li class="cl">Politics</li>
+                    <li class="cl">Tech</li>
+                </ul>
+            </a>
+        </li>
+        <li class="box"><a href="#contact">Contact</a></li>
+        <li class="box"><a href="#about">About</a></li>
+        <li class="box"><a href="#Sign in">Sign In</a></li>
+    </ul>
+</body>
+
+</html>
